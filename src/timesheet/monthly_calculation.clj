@@ -1,6 +1,7 @@
 (ns timesheet.monthly-calculation
   (:require [timesheet.monthly-data :as data]
-            [timesheet.hours :as hours]))
+            [timesheet.hours :as hours]
+            [clojure.pprint :as pprint :refer [pprint print-table]]))
 
 (def monthly-data (rest (data/get-monthly-data))) ;; no title row
 
@@ -20,3 +21,14 @@
 
 (defn get-monthly-hours-per-day []
   (map calculate-one-day monthly-data))
+
+(defn calculate-monthly-total []
+  (let [month (get-monthly-hours-per-day)]
+    (println "Calculating...")
+    (print-table month)
+    (reduce + (map :hours month))))
+
+(defn print-month []
+  (let [montly-total (calculate-monthly-total)]
+    (println "\nTotal: ")
+    (println montly-total)))
