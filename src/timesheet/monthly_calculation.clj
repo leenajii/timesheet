@@ -18,5 +18,5 @@
   (let [mapped-row (entry-row->map entry)]
     (daily-total mapped-row)))
 
-(defn print-month []
+(defn get-monthly-hours-per-day []
   (map calculate-one-day monthly-data))
