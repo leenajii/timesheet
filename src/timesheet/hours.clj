@@ -4,7 +4,7 @@
             [clj-time.format :as ftime]
             [clj-time.core :as t]))
 
-(defn- time->time-in-minutes [time-string]
+(defn time->time-in-minutes [time-string]
   (ftime/parse (ftime/formatters :hour-minute) time-string))
 
 (def fields [:name :person-id :date :start :end])
@@ -27,7 +27,7 @@
   (if (t/after? timestamp (t/minus evening-start (t/minutes 1))) true ;after 17:59, otherwise 18:00 returns false
     false))
 
-(defn- time-interval-in-hours [start end]
+(defn time-interval-in-hours [start end]
   (let [total-minutes (t/in-minutes (t/interval start end))
         total-hours (double (/ total-minutes 60))]
     total-hours))
