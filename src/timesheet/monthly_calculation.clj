@@ -27,10 +27,13 @@
   (let [month (get-monthly-hours-per-day)
         monthly-total (reduce + (map :hours month))
         monthly-saldo (reduce + (map :saldo month))
-        mt (merge {} {:total-saldo monthly-saldo :total-hours monthly-total})]
+        month-with-totals (merge {} {:total-saldo monthly-saldo :total-hours monthly-total})
+        summary-line {:date "" :start "" :end "" :hours monthly-total :saldo monthly-saldo}
+        table (conj (vec month) summary-line)]
+    (println table)
     (println "Calculating...")
-    (print-table month)
-    mt))
+    (print-table table)
+    month-with-totals))
 
 (defn print-month []
   (let [monthly-total (calculate-monthly-totals)]
