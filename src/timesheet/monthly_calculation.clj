@@ -33,6 +33,7 @@
     mt))
 
 (defn print-month []
-  (let [montly-total (calculate-monthly-total)]
-    (println "\nTotal: ")
-    (println montly-total)))
+  (let [monthly-total (calculate-monthly-totals)]
+    (println "\n*********** Totals ***********")
+    (println (str "Monthly total: " (:total-hours monthly-total)))
+    (println (str "Saldo: " (:total-saldo monthly-total)))))
