@@ -9,8 +9,8 @@
   (let [start (hours/time->time-in-minutes (:start mapped-row))
        end (hours/time->time-in-minutes (:end mapped-row))
        total-hours (hours/time-interval-in-hours start end)
-        total-hours-without-lunch (- total-hours 0.5)
-        saldo (- total-hours-without-lunch 7.5)]
+        total-hours-without-lunch (with-precision 2 (/(bigdec (- total-hours 0.5)) 1))
+        saldo (with-precision 2 (/(bigdec (- total-hours-without-lunch 7.5)) 1))]
     (merge {:hours total-hours-without-lunch :saldo saldo} mapped-row)))
 
 (defn entry-row->map [row]
