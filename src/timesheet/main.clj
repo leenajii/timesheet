@@ -2,11 +2,11 @@
   (:gen-class)
   (:require [clojure.tools.trace :refer [trace]]
             [clojure.tools.logging :refer [info error]]
-            [timesheet.employees :as employees])
+            [timesheet.monthly-calculation :as calc])
   (:import [java.lang Runtime Thread]))
 
 (defn run []
-  (employees/calculate-monthly-salaries))
+  (calc/print-month))
 
 (defn -main []
   (try
